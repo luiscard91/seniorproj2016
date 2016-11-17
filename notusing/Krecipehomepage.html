@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<!--STILL NEEDED:-->
+<!--LOOP THROUGH IMAGES-->
+<!--RANDOMIZE IMAGES-->
+<!--CHANGE CSS TO MATCH OTHER PAGES-->
+<!--LINK TO RECIPE DATABASE//SAVED RECIPES-->
+<!--DON'T DISPLAY IMAGES THAT WERE ALREADY ACCEPTED/REJECTED WHEN PAGE IS REFRESHED-->
+
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Recipe List</title>
+  <meta name="viewport" content="width=device-width">
+<link rel="stylesheet" type="text/css" href="../../Khomepage.css">
+  <link rel="stylesheet" type="text/css" href="Kbuttoncss.css">
+</head>
+<body>
+  <header>
+    <h1>Recipe List</h1>
+  </header>
+  <section>
+      <br></br>
+    <div class="cardcontainer list" >
+    <ul class="cardlist">
+          <li class="card current"><img src="images/1.jpg" alt="" height="250" width="250"></li>
+        <template>
+            <li class="card"><img src="images/2.jpg" alt="" height="250" width="250"></li>
+            <li class="card"><img src="images/3.jpg" alt="" height="250" width="250"></li>
+            <li class="card"><img src="images/4.jpg" alt="" height="250" width="250"></li>
+            <li class="card"><img src="images/5.jpg" alt="" height="250" width="250"></li>
+            <li class="card"><img src="images/6.jpg" alt="" height="250" width="250"></li>
+            <li class="card"><img src="images/7.jpg" alt="" height="250" width="250"></li>
+            <li class="card"><img src="images/8.jpg" alt="" height="250" width="250"></li>
+            <li class="card"><img src="images/9.jpg" alt="" height="250" width="250"></li>
+            <li class="card"><img src="images/10.jpg" height="250" width="250"></li>
+            <li class="card"><img src="images/11.jpg" height="250" width="250"></li>
+            <li class="card"><img src="images/12.jpg" height="250" width="250"></li>
+        </template>
+    </ul>
+    <br></br>
+      <button class="but-nope" align="center" style="font-size : 35px">X</button>
+      <button class="but-yay" align="center" style="font-size : 35px">✔</button>
+      <!--<span id="counter"></span>-->
+    </div>
+    <ul class="cardlist" id="results">
+    </ul>
+    </section>
+
+<script src="../../Kcardstackformat.js"></script>
+<script src="Kcardstacking.js"></script>
+</body>
+</html>
