@@ -2,7 +2,6 @@
 /* 
 TO DO:
 
-
     display only a certain amount recpies at a time
 
 */
@@ -48,7 +47,7 @@ TO DO:
         if(!$row){
             $not_in_shoppinglist = true;
         } else {
-            $errorMsg = "$item_to_add are already in your shopping list";
+            $errorMsg = "$item_to_add already exist in your shopping list";
         }
         $check_pantry_query = "SELECT * FROM `vw_user_pantry_desc` WHERE `userID` = $userID AND `item_name` = '$item_to_add'";
         $result = mysqli_query($mysqli, $check_pantry_query);
@@ -56,14 +55,14 @@ TO DO:
         if(!$row){
             $not_in_pantry = true;
         } else {
-            $errorMsg = "$item_to_add are already in your pantry";
+            $errorMsg = "$item_to_add already exist in your pantry";
         }
         //store item in shopping list
         if($not_in_shoppinglist && $not_in_pantry) {
             
             $insert_sql = "INSERT INTO `shopping_list`(`USERID`, `ITEM_NAME`) VALUES ('$userID', '$item_to_add')";
             $result = mysqli_query($mysqli, $insert_sql);
-            $successMsg = "$item_to_add has been added successfully to the shopping list";
+            $successMsg = "$item_to_add added successfully to the shopping list";
 
         }
     }
@@ -105,7 +104,7 @@ TO DO:
 
                         <button id='$id details_btn' type='button' class='btn btn-default btn-sm' onclick=\"toggleShow($id)\">Details</button>
                         <button type='button' class='btn btn-default btn-sm' onclick=\"getModal($id, '$title', '$id ingredient')\">Check Ingredients</button>
-                        <button type='button' class='btn btn-default btn-sm' onclick=>Remove Recipe</button>
+                        <button type='button' class='btn btn-default btn-sm' onclick=\"confirmRemove($id, '$title')\">Remove Recipe</button>
 
                     </div>
                     
