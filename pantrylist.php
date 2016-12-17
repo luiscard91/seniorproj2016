@@ -1,18 +1,4 @@
 <?php
-
-	/*
-	//code we might want for the css page
-	echo "<style>
-			body {
-					background-color: tomato; 
-					font-size: 18px; 
-					font-color: white;
-			} 
-		</style>";
-		
-	*/
-		
-		
 	$pgm = "pantrylist.php";
 	
 	include_once("usersdisplay.php");
@@ -75,8 +61,25 @@
 							if (isset($_GET['ingredient']))		$ingredient = $_GET['ingredient'];
 							if (isset($_GET['quantity']))		$quantity = $_GET['quantity'];
 							if (isset($_GET['userPantryTableID']))		$userPantryTableID = $_GET['userPantryTableID'];
-							if ($quantity < 1) {
-								
+							if ($quantity == 1){ 
+							?>
+							
+							<script type="text/javascript">
+								var ingredient = "<?php echo $ingredient; ?>";
+								document.getElementById("msg").textContent = ingredient + " was added to shopping list";
+									/*<?php
+									$query = "DELETE FROM user_pantry WHERE ID = '$userPantryTableID'";
+									$mysqli->query($query);
+									$query = "INSERT INTO `shopping_list`(`USERID`, `ITEM_NAME`) VALUES ($userID, '$ingredient')";
+									$mysqli->query($query);
+									?>*/
+									
+							</script>
+							
+							<?php
+							}
+							else if ($quantity < 1) {
+							
 							}
 							else {
 							$query = "UPDATE user_pantry SET
@@ -100,9 +103,16 @@
 							$newItemIDS = $newItemID["ID"];
 							$query2 = "INSERT INTO user_pantry (ITEM_ID, USERID, QTY_ON_HAND) VALUES
 									($newItemIDS, $userID, $quantityAdd)";
-							$result2 = $mysqli->query($query2); }
+							$result2 = $mysqli->query($query2); 
+							
+							//alert saying ingredient has been added to db
+							echo "<script>
+								alert(\"$ingredientAdd has been added!\")
+								</script>";}
 							else {
-								$msg = "Ingredient $ingredientAdd NOT Added! Already exists!" . mysqli_error($mysqli); $color = "red";
+								echo "<script>
+								alert(\"$ingredientAdd already exists in your pantry!\")
+								</script>";
 							}
 							break;
 		case "Delete":
@@ -111,7 +121,11 @@
 							if (isset($_GET['userPantryTableID']))		$userPantryTableID = $_GET['userPantryTableID'];
 							$query = "DELETE FROM user_pantry WHERE ID = '$userPantryTableID'";
 							$result = $mysqli->query($query);
-							if ($query) $msg = "Ingredient $ingredient Deleted"; $color = "red";
+							if ($query) {
+								echo "<script>
+								alert(\"$ingredient has deleted from pantry!\")
+								</script>";
+							}
 							break;
 		case "Error": $color = "red"; break;
 		default:	break;
@@ -124,16 +138,14 @@
 			ORDER BY a.ITEM_NAME";
 	$result = $mysqli->query($query);
 
-	echo "<div >";
-		
+
 	
-	
-	echo"</div>
-		
-		
-		<div class=\"pre-scrollable col-xs-offset-3 col-sm-offset-3 col-md-offset-3 col-sm-6 col-xs-6 col-md-6\">
-		<table class=\"table\"  align='center'>
-		
+	echo"
+		<div class=\"container\">
+		<div class=\"row\">
+		<div class=\"col-md-offset-2 col-md-8\">
+		<div class=\"pre-scrollable user-pantry \">
+		<table class=\"table\" >
 		<tr>
 		<th width='15%' align='left'>Ingredient</th>
 		<th width='15%' align='left'>Quantity</th>
@@ -152,14 +164,14 @@
 		  </tr>";
 	}
 
-	echo "</table></div><table width='1024' align='center'>
+	echo "</table></div></div></div><div><table width='1024' align='center'>
 		  <br></br>
 		  <tr><td width='20%'><b>Add Ingredient</b><td></tr>";
 
 	echo "<form action='$pgm' method='post'>
 		  <table width='1024' align='center'>
-		  <tr><td width='5%'>Ingredient    </td><td width='20%'><input type='text' name='ingredientAdd' 	value='$ingredient'    size='15'></td>
-		  <td width='5%'>Quantity    	   </td><td width='10%'><input type='text' name='quantityAdd' 		value='$quantity'      size='4'></td>
+		  <tr><td width='5%'>Ingredient&nbsp;&nbsp;</td><td width='20%'><input type='text' name='ingredientAdd' 	value='$ingredient'    size='15'></td>
+		  <td width='5%'>Quantity&nbsp;&nbsp;</td><td width='10%'><input type='text' name='quantityAdd' 		value='$quantity'      size='4'></td>
 		  <td><input type='submit' name='task' value='Add'></td></tr></table></form>
 		  <table width='1024' align='center'>
 		  <br></br>

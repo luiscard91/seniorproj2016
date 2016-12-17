@@ -10,8 +10,7 @@ session_start();
 <head>
         <meta charset="utf-8" />
         <title></title>
-        <!-- for mobile -->
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
         
@@ -19,12 +18,12 @@ session_start();
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
         
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         
         <!-- Latest compiled and minified JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
         
-        
+        <link href="css/userdisplay.scss" rel="stylesheet">
             
 </head>
 
@@ -35,32 +34,23 @@ session_start();
     <!--session_check.php includes:
         $userID, $username, $now as current time, $session_valid -->
     
-    <center><b><u>Recipes</u></b></center><br><br>
-    <?php
-        include("objects/nav_recipe.php");
-        include_once("phpScripts/session_check.php");
-        //tests if valid session and displays user info
-        if ($session_valid){
-            include_once('Knewrecipelist.php');
-            
-    ?>
+		<center><b><u>Shopping List</u></b></center><br><br>
+        <?php
+            include("objects/nav_shopping.php");
+            include_once("phpScripts/session_check.php");
+            //tests if valid session and displays user info
+            if ($session_valid){
+                ?>
+                <div class="row user-feedback">
+                    <span id='msg'></span>
+                </div>
+                <?php
+                include_once('shoppinglist.php');
+                //include('logout_btn.php');
+            }
+        ?>
 
     </div>
-    <?php }?> <!-- End of session check -->
-    
 </body>
-<script>
-    function toggleShow(itemID){
-        var detailsClassName = document.getElementById(itemID + ' details').className;
-        if (detailsClassName == "hidden"){
-            document.getElementById(itemID + ' details').className = "";
-            document.getElementById(itemID + ' details_btn').textContent = "Hide";
-        } else {
-            document.getElementById(itemID + ' details').className = "hidden";
-            document.getElementById(itemID + ' details_btn').textContent = "Details";
-        }
-    }
-    
 
-</script>
 </html>

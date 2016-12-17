@@ -11,18 +11,21 @@ session_start();
 <head>
         <meta charset="utf-8" />
         <title></title>
-        
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
         
         <!-- Optional theme -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
         
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        
         <!-- Latest compiled and minified JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
         
         
-        <link href="css/savedrecipe.css" rel="stylesheet">
+        <link href="css/savedrecipe.scss" rel="stylesheet">
         
             
 </head>
@@ -82,7 +85,7 @@ session_start();
                 </div>
             </div>
             <div class="modal-footer col-sm-12  col-md-12 col-xs-12">
-                <h3>Modal Footer</h3>
+
             </div>
         </div>
     
@@ -90,16 +93,29 @@ session_start();
     
 </body>
 <script>
+    var index = <?=$index?>;
+    var count = <?=$count?>;
+    var totalCount = <?=$totalCount?>;
+    
+    
+    if (index == 0){
+        document.getElementById("back").className += " hidden";
+    } else if (count == totalCount){
+        document.getElementById("next").className += " hidden";
+    }
+    
     //fix this at some point
     var errorMsg = "<?php echo"$errorMsg" ?>";
     var successMsg = "<?php echo"$successMsg"?>";
     
     if( errorMsg != ""){
-        document.getElementById("msg").textContent = errorMsg;
+        //document.getElementById("msg").textContent = errorMsg;
+        alert(errorMsg)
     }
     
     if(successMsg != ""){
-        document.getElementById("msg").textContent = successMsg;
+        //document.getElementById("msg").textContent = successMsg;
+        alert(successMsg)
     }
     //end the fix
     
@@ -119,8 +135,13 @@ session_start();
             
         }
     }
-    
+    function next(){
+        window.location.assign("usersavedrecipes.php?task=next&index=<?=$index?>");
+    }
 
+    function back(){
+        window.location.assign("usersavedrecipes.php?task=back&index=<?=$index?>");
+    }
     
 //modal stuff
     // Get the modal

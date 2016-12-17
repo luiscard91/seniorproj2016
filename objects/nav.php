@@ -1,8 +1,5 @@
-<div class="col-sm-12 col-xs-6 col-md-12">
-  <table class="table">
-    <tr>
+<div class="col-xs-12">
+        
         <!-- the logout button -->
-        <td class="text-right"><?php include("objects/logout_btn.php") ?></td>
-    </tr>
-  </table>
+        <div class="text-right"><?php include("objects/logout_btn.php") ?></div>
 </div>

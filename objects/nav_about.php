@@ -1,11 +1,12 @@
 <link href="css/nav.scss" rel="stylesheet">
 
+
 <nav class="navbar navbar-defaults navigation">
     <ul class="nav nav-tabs">
         <li role="presentation"><a href="home.php">
             <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
         </a></li>
-        <li role="presentation" class="active clearfix visible-sm visible-md visible-lg"><a href="#">
+        <li role="presentation" class="clearfix visible-sm visible-md visible-lg"><a href="usersdisplay.php">
             Pantry
         </a></li>
         <li class="clearfix visible-sm visible-md visible-lg" role="presentation"><a href="usersshoppinglist.php">
@@ -37,7 +38,7 @@
         <li class="navbar-right clearfix visible-sm visible-md visible-lg" role="presentation"><a href="objects/session_destroy.php">
             Logout
         </a></li>
-        <li class="navbar-right clearfix visible-sm visible-md visible-lg" role="presentation"><a href="usersabout.php">
+        <li class="active navbar-right clearfix visible-sm visible-md visible-lg" role="presentation"><a href="#">
             About Us
         </a></li>
     </ul>

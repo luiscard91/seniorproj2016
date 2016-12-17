@@ -1,0 +1,14 @@
+.hamburger{
+    float: right !important;
+}
+
+.dropdown{
+    right: 0 ;
+    left: initial;
+}
+
+@media(max-width: 767px){
+    .navigation{
+        font-size: 24px;
+    }
+}

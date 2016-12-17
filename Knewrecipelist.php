@@ -71,26 +71,31 @@
 			if ($checkRecipe->num_rows == 0) {
 				$queryAdd = "INSERT INTO fav_recipes (USERID, RECIPEID) VALUES
 					($userID, $addid)";
-				$resultAdd = $mysqli->query($queryAdd); }
+				$resultAdd = $mysqli->query($queryAdd); 
+				echo"<script> 
+					alert(\"$addtitle has been added to saved recipes!\")
+				</script>";
+			}
 			else {
-				$msg = "Recipe $addtitle NOT Added! You already added it!" . mysqli_error($mysqli); $color = "red";
+				echo "<script>
+				alert(\"$addtitle was not added! It already exists in your saved recipes!\")
+				</script>";
 			}
 	}
   
 // Query the recipes tables 
 
-	//todo: next goes outside the range of the query
-	//either write a script that returns total recipes
-	//or hard code it
+
 	if($task == "next"){
 		$startIndex = $_GET['i'] + $pageCount;
 		//echo("startIndex <br>" . $startIndex);
 		
-		$query = "SELECT id, title, category
+		$query = "SELECT id, title, category, ingredients
 			FROM recipes
 			$filter ORDER BY id LIMIT $startIndex , $pageCount";
 		$result = $mysqli->query($query);
 		//echo("the query: <br>" . $query);
+		
 		
 		$queryCount = mysqli_query($mysqli, "SELECT COUNT(*) AS num FROM recipes $filter");
 		$numRows = mysqli_fetch_assoc($queryCount);
@@ -103,7 +108,7 @@
 		$startIndex = $_GET['i'] - $pageCount;
 		//echo("startIndex <br>" . $startIndex);
 		
-		$query = "SELECT id, title, category
+		$query = "SELECT id, title, category, ingredients
 			FROM recipes
 			$filter ORDER BY id LIMIT $startIndex , $pageCount";
 		$result = $mysqli->query($query);
@@ -115,7 +120,7 @@
 		// = $startIndex + $pageCount;
 		
 	} else {
-		$query = "SELECT id, title, category
+		$query = "SELECT id, title, category, ingredients
 				FROM recipes
 				$filter ORDER BY id LIMIT $startIndex , $pageCount";
 		$result = $mysqli->query($query);
@@ -156,22 +161,26 @@
 
 // Gets the queried information and displays it
 // Get image from the images folder: <img src='imagerecipes/$id.jpg'>
-	while(list($id, $title, $category) = $result->fetch_row()) {
+	while(list($id, $title, $category, $ingredients) = $result->fetch_row()) {
 		$count++;
-		echo utf8_encode ("<tr>
-		  <td align='center'><img src='imagerecipes/$id.jpg' height='150' width:150px/><br></br>$title 
-		  
-		  
-		  
-		  </tr>
-		  <tr>
-		  <td align='center'><form action='' method='post'>
-		  <input type='hidden' name='id' value='$id'/>
-		  <input type='hidden' name='title' value='$title'/>
-		  <input type='hidden' name='cats' value='$cat_in'/>
-		  <input type='submit' name='addrecipe' value='Add recipe'></td>
-		  </form>
-		  </tr>");
+			echo utf8_encode ("<tr>
+			<td align='center'><img src='imagerecipes/$id.jpg' height='350' width:350px/><br></br>$title 
+		
+			</tr>
+			<tr>
+			<td align='center'><form action='' method='post'>
+			<input type='hidden' name='id' value='$id'/>
+			<input type='hidden' name='title' value='$title'/>
+			<input type='hidden' name='cats' value='$cat_in'/>
+			<input class='btn btn-default btn-sm' type='submit' name='addrecipe' value='Add recipe'>
+			<button id='$id details_btn' type='button' class='btn btn-default btn-sm' onclick=\"toggleShow($id)\">Details</button>
+			<div id=\"$id details\" class=\"hidden\">
+				<pre>$ingredients</pre>
+			</div>
+			</td>
+		
+			</form>
+			</tr>");
 	}
 
 
@@ -181,8 +190,8 @@
 		<table width='1024' align='center'>
 		<td align='center'>
 			<div>
-				<button id='back_btn' onclick=\"location.href='$pgm?i=$startIndex&task=back&cat=$cat_in'\"><img src='btnimages/back.png' height='10' width='10'/></button>
-				<button id='next_btn' onclick=\"location.href='$pgm?i=$startIndex&task=next&cat=$cat_in'\"><img src='btnimages/next.png' height='10' width='10'/></button>
+				<button id='back_btn' class='btn btn-default' onclick=\"location.href='$pgm?i=$startIndex&task=back&cat=$cat_in#'\"><img src='btnimages/back.png' height='10' width='10'/></button>
+				<button id='next_btn' class='btn btn-default' onclick=\"location.href='$pgm?i=$startIndex&task=next&cat=$cat_in'\"><img src='btnimages/next.png' height='10' width='10'/></button>
 			</div>
 		</td>
 		</table>";

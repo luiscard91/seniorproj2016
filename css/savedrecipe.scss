@@ -48,6 +48,18 @@ pre{
     border-radius: 5px;
 }
 
+.nav-btns {
+    padding-top: 10px;
+    padding-bottom: 25px;
+}
+.back-btn{
+            
+}
+        
+.next-btn{
+    float:right;
+}
+
 /* The Modal (background) */
 .modal {
     display: none; /* Hidden by default */
@@ -103,7 +115,7 @@ pre{
 .modal-body {padding: 2px 16px;}
 
 .modal-footer {
-    padding: 2px 16px;
+    padding: 20px 16px;
     background-color: gray;
     color: white;
 }

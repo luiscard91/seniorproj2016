@@ -17,10 +17,13 @@ session_start();
         <!-- Optional theme -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
         
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        
         <!-- Latest compiled and minified JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
         
-        
+        <link href="css/userdisplay.scss" rel="stylesheet">
             
 </head>
 
@@ -36,7 +39,14 @@ session_start();
             include("objects/nav_pantry.php");
             include_once("phpScripts/session_check.php");
             //tests if valid session and displays user info
-            if ($session_valid){
+            if ($session_valid){ ?>
+            
+                <div class="row user-feedback">
+                    <span id='msg'></span>
+                </div>
+                
+                
+                <?php
                 include_once('pantrylist.php');
                 //include('logout_btn.php');
             }

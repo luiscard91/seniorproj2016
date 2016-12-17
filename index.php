@@ -7,7 +7,7 @@ session_start();
 if ($_POST['login_btn']){
     
 //Time in seconds the session stays valid for
-$sessionTime = 600000;
+$sessionTime = 600;
 
 // query to grabs all the user
     
@@ -73,13 +73,17 @@ if ($_POST['signup_btn']){
     <head>
         <meta charset="utf-8" />
         <title>Chicken Tendr</title>
-        <link rel="stylesheet" href="css/register.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/register.scss">
         
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
         
         <!-- Optional theme -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+        
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         
         <!-- Latest compiled and minified JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
@@ -88,18 +92,20 @@ if ($_POST['signup_btn']){
     </head>
     
     <body>
-        <form action="index.php" method="post">
+        <div class="container login-form ">
+            <form action="index.php" method="post">
       
-        <h1>Chicken Tendr</h1>
+            <h1>Chicken Tendr</h1>
         
-        <fieldset>
-            <input type="text" placeholder="Username" name="username"/>
-            <input type="password" placeholder="Password" name="password"/>
-        </fieldset>
-            <tr>
-                <input type="submit" class="btn btn-default" name="login_btn" value = "Login"/>
-                <input type="submit" class="btn btn-default" name="signup_btn" value = "Signup"/>
-            </tr>
-      </form> 
+            <fieldset>
+                <input type="text" placeholder="Username" name="username"/>
+                <input type="password" placeholder="Password" name="password"/>
+            </fieldset>
+                <tr>
+                    <input type="submit" class="btn btn-default" name="login_btn" value = "Login"/>
+                    <input type="submit" class="btn btn-default" name="signup_btn" value = "Signup"/>
+                </tr>
+            </form> 
+      </div>
     </body>
 </html>
