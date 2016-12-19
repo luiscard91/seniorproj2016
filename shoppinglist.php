@@ -64,12 +64,14 @@
 							$result = $mysqli->query($query);
 							
 							echo "<script>
-							alert(\"$ingredientAdd has been added to your shopping list!\")
-							</script>";}
+										document.getElementById('msg').className += \" success\";
+								        document.getElementById('msg').textContent = '\"$ingredientAdd\" has been added!';
+								</script>";}
 							else {
 								echo "<script>
-								alert(\"$ingredientAdd already exists in your shopping list!\")
-								</script>";
+								        document.getElementById('msg').className += \" fail\";
+								    	document.getElementById('msg').textContent = '\"$ingredientAdd\" already exists in your Shopping List!!';
+								    </script>";
 							}
 							break;
 		case "AddAllToPantry":
@@ -106,8 +108,10 @@
 									$result = $mysqli->query($delete_pantry_query);
 									
 									if ($insert_pantry_query) {
-										echo "<script>
-											alert(\"Purchased ingredient $ingredient was added to your pantry!\")
+										echo "
+										<script>
+												document.getElementById('msg').className += \" success\";
+										        document.getElementById('msg').textContent = 'Purchased ingredient \"$ingredient\" was added to your pantry!';
 										</script>";
 									}
 								} else {
@@ -125,10 +129,17 @@
 									
 									if ($update_pantry_query) {
 										echo "<script>
-											alert(\"Purchased ingredient $ingredient was added to your pantry!\")
+												document.getElementById('msg').className += \" success\";
+										        document.getElementById('msg').textContent = 'Purchased ingredient \"$ingredient\" was added to your pantry!';
 										</script>";
 									}
 								}
+							} else {
+								echo "
+								<script>
+										document.getElementById('msg').className += \" fail\";
+								        document.getElementById('msg').textContent = 'No quantity selected for \"$ingredient\"';
+								</script>";
 							}
 							
 							break;
@@ -138,8 +149,10 @@
 							$query = "DELETE FROM shopping_list WHERE ITEMID = '$rowid'";
 							$result = $mysqli->query($query);
 							if ($query) {
-								echo "<script>
-								alert(\"$ingredient has been deleted from your shopping list!\")
+								echo "
+								<script>
+										document.getElementById('msg').className += \" success\";
+								        document.getElementById('msg').textContent = '\"$ingredient\" has been deleted from your shopping list!';
 								</script>";
 							}
 							break;

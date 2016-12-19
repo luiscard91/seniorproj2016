@@ -73,13 +73,17 @@
 					($userID, $addid)";
 				$resultAdd = $mysqli->query($queryAdd); 
 				
-				echo "<script> 
-					alert(\"$addtitle has been added to saved recipes!\")
+				echo "
+				<script>
+						document.getElementById('msg').className += \" success\";
+				        document.getElementById('msg').textContent = '\"$addtitle\" has been added to saved recipes!';
 				</script>";
 			}
 			else {
-				echo "<script>
-				alert(\"$addtitle was not added! It already exists in your saved recipes!\")
+				echo "
+				<script>
+						document.getElementById('msg').className += \" fail\";
+				        document.getElementById('msg').textContent = '\"$addtitle\" was not added! It already exists in your saved recipes!';
 				</script>";
 			}
 	}

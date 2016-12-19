@@ -1,8 +1,5 @@
-<?php
-
-
-include_once("usersconversion.php");
-
-echo "test";
-
-?>
+<div "row">
+    <center>
+        <img class="img-responsive" src="img/conversion.jpg">
+    </center>
+</div>

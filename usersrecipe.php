@@ -48,14 +48,16 @@ session_start();
         include("objects/nav_recipe.php");
         include_once("phpScripts/session_check.php");
         //tests if valid session and displays user info
-        if ($session_valid){
+        if ($session_valid){ ?>
+        
+        <div class="row user-feedback">
+            <span id='msg'></span>
+        </div>
+        <?php
             include_once('Knewrecipelist.php');
             
-    ?>
-
+    }?> <!-- End of session check -->
     </div>
-    <?php }?> <!-- End of session check -->
-    
 </body>
 <script>
     function toggleShow(itemID){
