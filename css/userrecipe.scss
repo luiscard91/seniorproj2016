@@ -1,0 +1,37 @@
+pre{
+    white-space: pre-wrap;
+    word-break: keep-all; /*this stops the word breaking*/
+
+}
+
+.center-me{
+    margin: auto;
+    width: 80%;
+    max-width: 500px;
+    max-height: 500px;
+
+}
+
+.recipe-img{
+    max-width: 330px;
+}
+
+.btn-row{
+    min-height: 34px;
+    padding-top: 10px;
+    
+}
+
+.ingredient-row{
+    padding-top: 10px;
+}
+
+#next_btn{
+    float: right;
+}
+
+@media(max-width: 767px){
+    .center-me{
+        width: 90%;
+    }
+}

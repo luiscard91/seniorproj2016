@@ -66,7 +66,7 @@
 							
 							<script type="text/javascript">
 								var ingredient = "<?php echo $ingredient; ?>";
-								document.getElementById("msg").textContent = ingredient + " was added to shopping list";
+								document.getElementById("msg").textContent = ingredient + " quantity at zero, added to shopping list";
 									/*<?php
 									$query = "DELETE FROM user_pantry WHERE ID = '$userPantryTableID'";
 									$mysqli->query($query);
@@ -91,7 +91,8 @@
 		case "Add":
 							if (isset($_POST['ingredientAdd']))	$ingredientAdd = $_POST['ingredientAdd'];
 							if (isset($_POST['quantityAdd']))	$quantityAdd = $_POST['quantityAdd'];
-							$checkIngredient = $mysqli->query("SELECT a.ITEM_NAME FROM pantry_items a JOIN user_pantry b ON a.ID = b.ITEM_ID WHERE ITEM_NAME = '$ingredientAdd' AND b.USERID = '$userID'");
+							$sCheck = $ingredientAdd . "s";
+							$checkIngredient = $mysqli->query("SELECT a.ITEM_NAME FROM pantry_items a JOIN user_pantry b ON a.ID = b.ITEM_ID WHERE ITEM_NAME = '$ingredientAdd' OR ITEM_NAME = '$sCheck' AND b.USERID = '$userID'");
 							if ($checkIngredient->num_rows == 0) {
 							$query = "INSERT INTO pantry_items (ITEM_NAME) VALUES
 								('$ingredientAdd')";
@@ -105,14 +106,21 @@
 									($newItemIDS, $userID, $quantityAdd)";
 							$result2 = $mysqli->query($query2); 
 							
-							//alert saying ingredient has been added to db
-							echo "<script>
-								alert(\"$ingredientAdd has been added!\")
-								</script>";}
+							//user feedback saying ingredient has been added to db
+							echo "
+								<script>
+										document.getElementById('msg').className += \" success\";
+								        document.getElementById('msg').textContent = '\"$ingredientAdd\" has been added!';
+								</script>
+								";}
 							else {
-								echo "<script>
-								alert(\"$ingredientAdd already exists in your pantry!\")
-								</script>";
+								echo "
+									<script>
+								        document.getElementById('msg').className += \" fail\";
+								    	document.getElementById('msg').textContent = '\"$ingredientAdd\" already exists in your pantry!';
+								    </script>
+									";
+								
 							}
 							break;
 		case "Delete":
@@ -123,7 +131,7 @@
 							$result = $mysqli->query($query);
 							if ($query) {
 								echo "<script>
-								alert(\"$ingredient has deleted from pantry!\")
+									document.getElementById('msg').textContent = '\"$ingredient\" has been deleted from your pantry!';
 								</script>";
 							}
 							break;
@@ -158,9 +166,9 @@
     echo "<tr>
 		  <td>$ingredient</td>
 		  <td>$quantity</td>
-		  <td><a href='pantrylist.php?r=$rowid&task=Increase&ingredient=$ingredient&quantity=$quantity&userPantryTableID=$userPantryTableID'><button><img src='btnimages/increase.png' height='10' width='10'/></button></a></td>
-		  <td><a href='pantrylist.php?r=$rowid&task=Decrease&ingredient=$ingredient&quantity=$quantity&userPantryTableID=$userPantryTableID'><button><img src='btnimages/decrease.png' height='2' width='10'/></button></a></td>
-		  <td><a href='pantrylist.php?r=$rowid&task=Delete&ingredient=$ingredient&quantity=$quantity&userPantryTableID=$userPantryTableID'><button><img src='btnimages/remove.png' height='10' width='10'/></button></a></td>
+		  <td><a href='pantrylist.php?r=$rowid&task=Increase&ingredient=$ingredient&quantity=$quantity&userPantryTableID=$userPantryTableID'><button class='btn btn-default'><img src='btnimages/increase.png' height='10' width='10'/></button></a></td>
+		  <td><a href='pantrylist.php?r=$rowid&task=Decrease&ingredient=$ingredient&quantity=$quantity&userPantryTableID=$userPantryTableID'><button class='btn btn-default'><img src='btnimages/decrease.png' height='2' width='10'/></button></a></td>
+		  <td><a href='pantrylist.php?r=$rowid&task=Delete&ingredient=$ingredient&quantity=$quantity&userPantryTableID=$userPantryTableID'><button class='btn btn-default'><img src='btnimages/remove.png' height='10' width='10'/></button></a></td>
 		  </tr>";
 	}
 
@@ -172,7 +180,7 @@
 		  <table width='1024' align='center'>
 		  <tr><td width='5%'>Ingredient&nbsp;&nbsp;</td><td width='20%'><input type='text' name='ingredientAdd' 	value='$ingredient'    size='15'></td>
 		  <td width='5%'>Quantity&nbsp;&nbsp;</td><td width='10%'><input type='text' name='quantityAdd' 		value='$quantity'      size='4'></td>
-		  <td><input type='submit' name='task' value='Add'></td></tr></table></form>
+		  <td><input class='btn btn-default btn-sm' type='submit' name='task' value='Add'></td></tr></table></form>
 		  <table width='1024' align='center'>
 		  <br></br>
 		  <tr><td width='10%'></td><td width='90%'><font color='$color'><strong>$msg</strong></font></td></tr></table>";

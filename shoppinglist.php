@@ -89,9 +89,6 @@
 					        if(!$row){
 					            $not_in_vwpantry = true;
 					        } else {
-							echo "<script>
-							alert(\"$item_to_add already exists in your pantry!\")
-							</script>";
 					        }
 							
 							if ($quantity != 0) {
@@ -108,7 +105,11 @@
 									$delete_pantry_query = "DELETE FROM shopping_list WHERE ITEMID = '$rowid'";
 									$result = $mysqli->query($delete_pantry_query);
 									
-									if ($insert_pantry_query) $msg = "Purchased ingredient $ingredient was added to your pantry"; $color = "green";
+									if ($insert_pantry_query) {
+										echo "<script>
+											alert(\"Purchased ingredient $ingredient was added to your pantry!\")
+										</script>";
+									}
 								} else {
 									$getqty_pantry_query = "SELECT QTY_ON_HAND FROM user_pantry where ITEM_ID = '$tempID' AND USERID = '$userID'";
 									$result = mysqli_query($mysqli, $getqty_pantry_query); 
@@ -122,7 +123,11 @@
 									$delete_pantry_query = "DELETE FROM shopping_list WHERE ITEMID = '$rowid'";
 									$result = $mysqli->query($delete_pantry_query);
 									
-									if ($update_pantry_query) $msg = "Purchased ingredient $ingredient was added to your pantry"; $color = "green";
+									if ($update_pantry_query) {
+										echo "<script>
+											alert(\"Purchased ingredient $ingredient was added to your pantry!\")
+										</script>";
+									}
 								}
 							}
 							
@@ -171,21 +176,21 @@
     echo "<tr>
 		  <td>$ingredient</td>
 		  <td>$quantity</td>
-		  <td><a href='shoppinglist.php?r=$rowid&task=Increase&ingredient=$ingredient&quantity=$quantity'><button><img src='btnimages/increase.png' height='10' width='10'/></button></a></td>
-		  <td><a href='shoppinglist.php?r=$rowid&task=Decrease&ingredient=$ingredient&quantity=$quantity'><button><img src='btnimages/decrease.png' height='2' width='10'/></button></a></td>
-		  <td><a href='shoppinglist.php?r=$rowid&task=AddAllToPantry&ingredient=$ingredient&quantity=$quantity'><button width='50'>Purchased</button></a></td>
-		  <td><a href='shoppinglist.php?r=$rowid&task=Delete&ingredient=$ingredient'><button><img src='btnimages/remove.png' height='10' width='10'/></button></a></td>
+		  <td><a href='shoppinglist.php?r=$rowid&task=Increase&ingredient=$ingredient&quantity=$quantity'><button class='btn btn-default'><img src='btnimages/increase.png' height='10' width='10'/></button></a></td>
+		  <td><a href='shoppinglist.php?r=$rowid&task=Decrease&ingredient=$ingredient&quantity=$quantity'><button class='btn btn-default'><img src='btnimages/decrease.png' height='2' width='10'/></button></a></td>
+		  <td><a href='shoppinglist.php?r=$rowid&task=AddAllToPantry&ingredient=$ingredient&quantity=$quantity'><button class='btn btn-default' width='50'>Purchased</button></a></td>
+		  <td><a href='shoppinglist.php?r=$rowid&task=Delete&ingredient=$ingredient'><button class='btn btn-default'><img src='btnimages/remove.png' height='10' width='10'/></button></a></td>
 		  </tr>";
 	}
 	
 	echo "</table></div></div></div></div><table width='1024' align='center'>
 		  <br></br>
-		  <tr><td width='30%'><b>Add Ingredient to Shopping List</b></td></tr>";
+		  <tr><td width='30%'><b>Add Ingredient</b></td></tr>";
 
 	echo "<form action='$pgm' method='post'>
 		  <table width='1024' align='center'>
 		  <tr><td width='5%'>Ingredient&nbsp;&nbsp;</td><td width='20%'><input type='text' name='ingredientAdd' 	value='$ingredient'    size='15'></td>
-		  <td><input type='submit' name='task' value='Add'></td></tr></table></form>
+		  <td><input class='btn btn-default btn-sm' type='submit' name='task' value='Add'></td></tr></table></form>
 		  <table width='1024' align='center'>
 		  <br></br>
 		  <tr><td width='10%'></td><td width='90%'><font color='$color'><strong>$msg</strong></font></td></tr></table>";

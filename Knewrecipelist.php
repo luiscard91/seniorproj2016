@@ -72,7 +72,8 @@
 				$queryAdd = "INSERT INTO fav_recipes (USERID, RECIPEID) VALUES
 					($userID, $addid)";
 				$resultAdd = $mysqli->query($queryAdd); 
-				echo"<script> 
+				
+				echo "<script> 
 					alert(\"$addtitle has been added to saved recipes!\")
 				</script>";
 			}
@@ -133,68 +134,73 @@
 	}
 	
 // Sort by Category
-	echo "<br>
-	<table align='center' border='0'>
-	<tr><td><form action='$pgm' method='post'>
-	CATEGORY: <select name='cat_in'>";
-	foreach ($categories as $cate) {
-			if ($cate == $cat_in) $se = "SELECTED";	else $se = NULL;
-	echo "<option $se>$cate</option>";
-		}
+	echo "
+	<div class =\"container\">
+		<div class=\"row\">
+			<div class=\"center-me\">
+				<form action='$pgm' method='post'>
+				<div class=\"form-group\">
+				CATEGORY: <select class=\"selectpicker\"  name='cat_in'>";
+				foreach ($categories as $cate) {
+						if ($cate == $cat_in) $se = "SELECTED";	else $se = NULL;
+							echo "<option $se>$cate</option>";
+				}
+				echo "</select>
+					<input class=\"btn btn-default\" type='submit' name='submit' value='Sort'>
+					</div>
+					</form>
+			</div>
+		</div>";
 		
-	echo "</select>
-		<input type='submit' name='submit' value='Sort'>
-		</form></td></tr></table>";
-		
-	echo "<table align='center' border='0'>
-		<tr><td><font color='$color'><strong>$msg</strong></font></td></tr>
-		</table>";
+	echo "<font color='$color'><strong>$msg</strong>";
 	
-// Outputs a template for the queried results
-	echo
-	"<table width='800' align='center' border='0'>
-		<tr>
-		<th width='5%'></th>
-		</tr>";
-
-	echo "<br></br>";
 
 // Gets the queried information and displays it
 // Get image from the images folder: <img src='imagerecipes/$id.jpg'>
 	while(list($id, $title, $category, $ingredients) = $result->fetch_row()) {
 		$count++;
-			echo utf8_encode ("<tr>
-			<td align='center'><img src='imagerecipes/$id.jpg' height='350' width:350px/><br></br>$title 
-		
-			</tr>
-			<tr>
-			<td align='center'><form action='' method='post'>
+			echo utf8_encode (
+			
+			"
+			<center>
+			<div class=\"row \">
+					<img class=\"center-me img-responsive\" src='imagerecipes/$id.jpg'/>
+			</div>
+			</center>
+			
+			<div class=\"row btn-row\">
+				<div class=\"center-me\">
+					<button id='back_btn' class='btn btn-default' onclick=\"location.href='$pgm?i=$startIndex&task=back&cat=$cat_in#'\"><img src='btnimages/back.png' height='10' width='10'/></button>
+					<button id='next_btn' class='btn btn-default' onclick=\"location.href='$pgm?i=$startIndex&task=next&cat=$cat_in'\"><img src='btnimages/next.png' height='10' width='10'/></button>
+				</div>
+			</div>
+			
+			<form action='' method='post'>
 			<input type='hidden' name='id' value='$id'/>
 			<input type='hidden' name='title' value='$title'/>
 			<input type='hidden' name='cats' value='$cat_in'/>
-			<input class='btn btn-default btn-sm' type='submit' name='addrecipe' value='Add recipe'>
-			<button id='$id details_btn' type='button' class='btn btn-default btn-sm' onclick=\"toggleShow($id)\">Details</button>
-			<div id=\"$id details\" class=\"hidden\">
-				<pre>$ingredients</pre>
+			
+			<div class=\"row title-row\">
+				<div class=\"center-me\">
+				<h2>$title</h2>
+					<input class='btn btn-default btn-sm' type='submit' name='addrecipe' value='Add recipe'>
+					<button id='$id details_btn' type='button' class='btn btn-default btn-sm' onclick=\"toggleShow($id)\">Details</button>
+				</div>
 			</div>
-			</td>
+			
+			<div class=\"row ingredient-row\">
+				<div class=\"center-me\">
+					<div id=\"$id details\" class=\"hidden\">
+						<pre>$ingredients</pre>
+					</div>
+				</div>
+			</div>
+
 		
 			</form>
-			</tr>");
+			</div> <!-- container div -->
+			");
 	}
-
-
-
-// Display how many recipes were found after sorting
-		echo "<table><br>
-		<table width='1024' align='center'>
-		<td align='center'>
-			<div>
-				<button id='back_btn' class='btn btn-default' onclick=\"location.href='$pgm?i=$startIndex&task=back&cat=$cat_in#'\"><img src='btnimages/back.png' height='10' width='10'/></button>
-				<button id='next_btn' class='btn btn-default' onclick=\"location.href='$pgm?i=$startIndex&task=next&cat=$cat_in'\"><img src='btnimages/next.png' height='10' width='10'/></button>
-			</div>
-		</td>
-		</table>";
 
 ?>
 

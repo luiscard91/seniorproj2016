@@ -23,6 +23,7 @@ session_start();
         <!-- Latest compiled and minified JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
         
+        <link href="css/global.scss" rel="stylesheet">
         <link href="css/userdisplay.scss" rel="stylesheet">
             
 </head>
@@ -33,8 +34,10 @@ session_start();
 
     <!--session_check.php includes:
         $userID, $username, $now as current time, $session_valid -->
-    
-		<center><b><u>Refrigerator and Pantry</u></b></center><br><br>
+        
+        <div class="page-title">
+    		<center><b><u>Pantry List</u></b></center>
+		</div>
         <?php
             include("objects/nav_pantry.php");
             include_once("phpScripts/session_check.php");
@@ -54,5 +57,8 @@ session_start();
 
     </div>
 </body>
-
+    <script>
+       
+        document.getElementById('msg').className += " success";
+    </script>
 </html>

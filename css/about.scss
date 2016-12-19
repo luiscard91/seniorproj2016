@@ -1,0 +1,63 @@
+
+.tendr-title{
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #b3cdf9;
+}
+
+.row-content{
+  border-top: 5px solid #000;
+  border-bottom: 5px solid #000;
+  border-radius: 5px;
+  margin-top: 25px;
+  padding: 20px;
+}
+
+.sub-title{
+  padding-top: 55px;
+}
+
+@media (max-width: 1200px){
+  .sub-title{
+    padding: 0px 0px 10px 0px;
+  }
+  .tendr-desc{
+    padding: 0px;
+  }
+}
+
+
+
+/*
+ * Base structure
+ */
+
+html,
+body {
+  height: 100%;
+  background-color: #ffffff;
+}
+
+h1 {
+    color: black;
+    text-align: center;
+    font-weight: bold;
+    font-size: 400%;
+    font-family: Papyrus;
+}
+
+h2 {
+    color: black;
+    text-align: center;
+    font-weight: bold;
+    font-size: 250%;
+    font-family: Georgia;
+}
+
+p {
+    font-family: Georgia;
+    font-size: 150%;
+    text-align: justify;
+}
+
+

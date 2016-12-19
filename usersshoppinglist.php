@@ -23,6 +23,7 @@ session_start();
         <!-- Latest compiled and minified JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
         
+        <link href="css/global.scss" rel="stylesheet">
         <link href="css/userdisplay.scss" rel="stylesheet">
             
 </head>
@@ -34,7 +35,9 @@ session_start();
     <!--session_check.php includes:
         $userID, $username, $now as current time, $session_valid -->
     
-		<center><b><u>Shopping List</u></b></center><br><br>
+        <div class="page-title">
+    		<center><b><u>Shopping List</u></b></center>
+		</div>
         <?php
             include("objects/nav_shopping.php");
             include_once("phpScripts/session_check.php");

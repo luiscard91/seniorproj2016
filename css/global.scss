@@ -1,0 +1,18 @@
+.page-title{
+    font-size: 24px;
+    padding-bottom: 20px;
+}
+
+.success{
+    color: green;
+}
+
+.fail{
+    color: red;
+}
+
+@media(max-width: 767px){
+    .page-title{
+        padding-bottom: 0px;
+    }
+}
