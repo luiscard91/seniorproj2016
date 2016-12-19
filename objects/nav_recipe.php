@@ -29,8 +29,8 @@
                 <li><a href="usersdisplay.php">Pantry</a></li>
                 <li><a href="usersshoppinglist.php">Shopping List</a></li>
                 <li><a href="usersavedrecipes.php">Saved Recipes</a></li>
-                <li><a href="#">Conversion Chart</a></li>
-                <li><a href="about.php">About Us</a></li>
+                <li><a href="usersconversion.php">Conversion Chart</a></li>
+                <li><a href="usersabout.php">About Us</a></li>
                 <li role="separator" class="divider"></li>
                 <li><a href="objects/session_destroy.php">Logout</a></li>
             </ul>

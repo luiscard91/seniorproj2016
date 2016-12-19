@@ -6,7 +6,6 @@ pre{
 
 #ingredients {
     height: 335px;
-    
 }
 
 #rightColumn {
@@ -60,10 +59,14 @@ pre{
     float:right;
 }
 
+h3{
+    background-color: ;
+}
+
 /* The Modal (background) */
 .modal {
     display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
+    // position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
     left: 0;
     top: 0;
@@ -80,7 +83,7 @@ pre{
 
 /* Modal Content */
 .modal-content {
-    position: fixed;
+    // position: fixed;
     top: 0;
     background-color: #fefefe;
     margin: 10%;
@@ -112,12 +115,34 @@ pre{
     color: white;
 }
 
-.modal-body {padding: 2px 16px;}
+.modal-body {
+    padding: 2px 16px;
+}
 
 .modal-footer {
     padding: 20px 16px;
     background-color: gray;
     color: white;
+}
+
+@media(max-width: 767px){
+    .modal-content{
+        height: auto;
+        width: 94%;
+        margin-left: 3%;
+    }
+    .pre-scrollable{
+        max-height: 250px;
+    }
+    #ingredients {
+        height: auto;
+    }
+    #addItem_Form {
+        padding-top: 0px;
+    }
+    #rightColumn{
+        height: auto;
+    }
 }
 
 /* Add Animation */
@@ -140,3 +165,4 @@ pre{
     from {opacity: 0}
     to {opacity: 1}
 }
+

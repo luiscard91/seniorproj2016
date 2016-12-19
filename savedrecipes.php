@@ -38,10 +38,15 @@ TO DO:
     
 //check if task is to remove a recipe
     if(isset($_GET['task']) && $_GET['task'] == 'remove'){
-
         $recipe_to_remove = $_GET['rID'];
         $delQuery = "DELETE FROM fav_recipes WHERE USERID = $userID AND RECIPEID = $recipe_to_remove";
         $mysqli->query($delQuery);
+        echo "
+            <script>
+        			document.getElementById('msg').className += \" success\";
+        	        document.getElementById('msg').textContent = 'Recipe removed';
+        	</script>
+        ";
     } elseif (isset($_GET['task']) && $_GET['task'] == 'add'){  
     //check if task is to add item to shopping list
         $item_to_add = $_GET['ingredient'];

@@ -45,7 +45,13 @@ session_start();
         include_once("phpScripts/session_check.php");
         //tests if valid session and displays user info
         if ($session_valid){
-            echo"<span id='msg'></span>";
+            ?>
+            
+            <div class="row user-feedback">
+                <span id='msg'></span>
+            </div>
+            
+            <?php
             include_once("savedrecipes.php");
             //include('logout_btn.php');
         }
@@ -62,18 +68,18 @@ session_start();
                 <span class="close">&times</span>
                 <h2 id="recipeTitle">Modal Header</h2>
             </div>
-            <div class="modal-body">
-                <div id='leftColumn' class='col-sm-4  col-md-4 col-xs-4'>
+            <div class="row modal-body">
+                <div id='leftColumn' class='col-sm-4'>
                     <h3>Ingredients</h3>
                     <pre id="ingredients"></pre>
                 </div>
                 
-                <div id='middleColumn' class='col-sm-4  col-md-4 col-xs-4'>
+                <div id='middleColumn' class='col-sm-4'>
                     <h3>Pantry</h3>
                     <?php include("phpScripts/modal_userpantry.php") ?>
                 </div>
                 
-                <div id='rightColumn' class='col-sm-4  col-md-4 col-xs-4'>
+                <div id='rightColumn' class='col-sm-4'>
                     <h3>Add to shopping list</h3>
                     <form id="addItem_Form" name="addItem_Form">
                         <div class="form-group">
